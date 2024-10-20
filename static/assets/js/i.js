@@ -11,8 +11,10 @@ if (form && input) {
   form.addEventListener("submit", async event => {
     event.preventDefault();
 
-    // Use window.location instead of window.top.location
-    if (window.location.pathname === "/rx") {
+    // Use window.location.pathname to avoid cross-origin issues
+    const currentPath = window.location.pathname; // Get current path from the same origin
+
+    if (currentPath === "/rx") {
       processUrl(input.value, "");
     } else {
       processUrl(input.value, "/rx");
