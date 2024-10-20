@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="fixed-nav-bar-right">
         <a class="navbar-link" href="/./up"><i class="fa-solid fa-gamepad navbar-icon"></i><span>&#71;&#97;</span><span>&#109;&#101;&#115;</span></a>
         <a class="navbar-link" href="/./yz"><i class="fa-solid fa-phone navbar-icon"></i><span>&#65;&#112;</span><span>&#112;&#115;</span></a>
-        ${window.top.location.pathname === "/rx" ? "" : '<a class="navbar-link" href="/./rx"><i class="fa-solid fa-laptop navbar-icon"></i><span>&#84;&#97;</span><span>&#98;&#115;</span></a>'}
+        ${window.location.pathname === "/rx" ? "" : '<a class="navbar-link" href="/./rx"><i class="fa-solid fa-laptop navbar-icon"></i><span>&#84;&#97;</span><span>&#98;&#115;</span></a>'}
         <a class="navbar-link" href="/./vk"><i class="fa-solid fa-gear navbar-icon settings-icon"></i><span>&#83;&#101;&#116;</span><span>&#116;&#105;&#110;&#103;</span></a>
       </div>`;
     nav.innerHTML = html;
@@ -108,5 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedBackgroundImage = localStorage.getItem("backgroundImage");
   if (savedBackgroundImage) {
     document.body.style.backgroundImage = `url('${savedBackgroundImage}')`;
+  }
+});
+
+// Additional logic to handle cross-origin frame communication (if needed)
+window.addEventListener("message", (event) => {
+  // Check the origin of the message
+  if (event.origin === "https://loungef2x.vercel.app") {
+    // Handle the message (for example, to get the pathname)
+    console.log(event.data);  // Assuming the data contains the pathname or relevant info
   }
 });
