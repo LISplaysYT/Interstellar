@@ -126,7 +126,7 @@ app.get("/assets/js/m.js", (req, res) => {
     res.status(500).send("Something went wrong.");
   }
 });
-const allowedSites = ["vercel.app", "https://loungef2x.vercel.app"]
+const allowedSites = ["vercel.app", "https://loungef2x.vercel.app", "https://loungef2x.vercel.app/proxy.html"]
 app.use(express.static(path.join(__dirname, "static")));
 app.use("/fq", cors({ origin: allowedSites }));
 
