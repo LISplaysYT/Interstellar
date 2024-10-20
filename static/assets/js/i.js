@@ -10,13 +10,16 @@ const input = document.getElementById("iv");
 if (form && input) {
   form.addEventListener("submit", async event => {
     event.preventDefault();
-    if (window.top.location.pathname === "/rx") {
+
+    // Use window.location instead of window.top.location
+    if (window.location.pathname === "/rx") {
       processUrl(input.value, "");
     } else {
       processUrl(input.value, "/rx");
     }
   });
 }
+
 function processUrl(value, path) {
   let url = value.trim();
   const engine = localStorage.getItem("engine");
@@ -34,7 +37,7 @@ function processUrl(value, path) {
   if (dy === "true") {
     window.location.href = `/a/q/${__uv$config.encodeUrl(url)}`;
   } else if (path) {
-    location.href = path;
+    window.location.href = path; // Use window.location.href
   } else {
     window.location.href = `/a/${__uv$config.encodeUrl(url)}`;
   }
@@ -53,11 +56,5 @@ function dy(value) {
 }
 
 function isUrl(val = "") {
-  if (
-    /^http(s?):\/\//.test(val) ||
-    (val.includes(".") && val.substr(0, 1) !== " ")
-  ) {
-    return true;
-  }
-  return false;
+  return /^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ");
 }
