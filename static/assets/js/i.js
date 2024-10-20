@@ -11,13 +11,17 @@ if (form && input) {
   form.addEventListener("submit", async event => {
     event.preventDefault();
 
-    // Use window.location.pathname to avoid cross-origin issues
-    const currentPath = window.location.pathname; // Get current path from the same origin
+    // Set currentPath to a specific URL (for example, a testing URL)
+    const currentPath = "https://loungef2x.vercel.app/app"; // Replace this with your desired URL
 
-    if (currentPath === "/rx") {
-      processUrl(input.value, "");
+    // Use the pathname from the specific URL
+    const pathname = new URL(currentPath).pathname; // Extract the pathname from the URL
+    
+    // Check the pathname to determine the next action
+    if (pathname === "/rx") {
+      processUrl(input.value, ""); // No additional path
     } else {
-      processUrl(input.value, "/rx");
+      processUrl(input.value, "/rx"); // Redirect to /rx
     }
   });
 }
@@ -30,7 +34,7 @@ function processUrl(value, path) {
   if (!isUrl(url)) {
     url = searchUrl + url;
   } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
-    url = `https://${url}`;
+    url = `https://${url}`; // Ensure URL has a protocol
   }
 
   sessionStorage.setItem("GoUrl", __uv$config.encodeUrl(url));
@@ -39,7 +43,7 @@ function processUrl(value, path) {
   if (dy === "true") {
     window.location.href = `/a/q/${__uv$config.encodeUrl(url)}`;
   } else if (path) {
-    window.location.href = path; // Use window.location.href
+    window.location.href = path; // Use provided path
   } else {
     window.location.href = `/a/${__uv$config.encodeUrl(url)}`;
   }
