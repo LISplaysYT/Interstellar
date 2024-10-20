@@ -128,7 +128,7 @@ app.get("/assets/js/m.js", (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, "static")));
-app.use("/fq", cors({ origin: true }));
+app.use("/fq", cors());
 
 const routes = [
   { path: "/yz", file: "apps.html" },
