@@ -6,7 +6,8 @@ const config = {
   },
   users: {
     // You can add multiple users by doing username: 'password'.
-    interstellar: "password",
+    LISPlays: "gtg@1766",
+    passwordisdemo: "demo",
   },
 };
 
